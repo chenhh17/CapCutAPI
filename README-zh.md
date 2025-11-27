@@ -89,7 +89,7 @@ cp config.json.example config.json
 ### 3. 启动服务
 
 ```bash
-python capcut_server.py # 启动HTTP API服务器, 默认端口: 9001
+python capcut_server.py # 启动HTTP API服务器, 默认端口: 12402
 
 python mcp_server.py # 启动 MCP 协议服务，支持 stdio 通信
 ```
@@ -139,7 +139,7 @@ python test_mcp_client.py
 import requests
 
 # 添加背景视频
-response = requests.post("http://localhost:9001/add_video", json={
+response = requests.post("http://localhost:12402/add_video", json={
     "video_url": "https://example.com/background.mp4",
     "start": 0,
     "end": 10
@@ -156,7 +156,7 @@ print(f"视频添加结果: {response.json()}")
 import requests
 
 # 添加标题文字
-response = requests.post("http://localhost:9001/add_text", json={
+response = requests.post("http://localhost:12402/add_text", json={
     "text": "欢迎使用 CapCutAPI",
     "start": 0,
     "end": 5,

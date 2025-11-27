@@ -88,7 +88,7 @@ cp config.json.example config.json
 ### 3\. Start the service
 
 ```bash
-python capcut_server.py # Start the HTTP API server, default port: 9001
+python capcut_server.py # Start the HTTP API server, default port: 12402
 
 python mcp_server.py # Start the MCP protocol service, supports stdio communication
 ```
@@ -139,7 +139,7 @@ Add video material
 import requests
 
 # Add background video
-response = requests.post("http://localhost:9001/add_video", json={
+response = requests.post("http://localhost:12402/add_video", json={
     "video_url": "https://example.com/background.mp4",
     "start": 0,
     "end": 10
@@ -156,7 +156,7 @@ Create stylized text
 import requests
 
 # Add title text
-response = requests.post("http://localhost:9001/add_text", json={
+response = requests.post("http://localhost:12402/add_text", json={
     "text": "Welcome to CapCutAPI",
     "start": 0,
     "end": 5,

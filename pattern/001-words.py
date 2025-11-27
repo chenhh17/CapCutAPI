@@ -8,7 +8,7 @@ import json
 sys.path.append('/Users/sunguannan/capcutapi')
 from example import add_image_impl
 
-PORT=9001       #端口
+PORT=12402       #端口
 BASE_URL = f"http://localhost:{PORT}"
 draft_folder = "/Users/sunguannan/Movies/JianyingPro/User Data/Projects/com.lveditor.draft"
 

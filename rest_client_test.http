@@ -1,5 +1,5 @@
 ###添加文本 
-POST http://localhost:9001/add_text
+POST http://localhost:12402/add_text
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ###添加视频 
-POST http://localhost:9001/add_video
+POST http://localhost:12402/add_video
 Content-Type: application/json
 
 {
@@ -24,7 +24,7 @@ Content-Type: application/json
 }
 
 ###保存草稿
-POST http://localhost:9001/save_draft
+POST http://localhost:12402/save_draft
 Content-Type: application/json
 
 {
