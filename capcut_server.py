@@ -34,8 +34,18 @@ from pyJianYingDraft.text_segment import TextStyleRange, Text_style, Text_border
 
 from settings.local import IS_CAPCUT_ENV, DRAFT_DOMAIN, PREVIEW_ROUTER, PORT
 
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+
 app = Flask(__name__)
- 
+
+@app.route('/health', methods=['GET'])
+def health_check():
+    return jsonify({"status": "ok", "message": "CapCut API Server is running"}), 200
+
 @app.route('/add_video', methods=['POST'])
 def add_video():
     data = request.get_json()
@@ -195,6 +205,7 @@ def add_audio():
 
 @app.route('/create_draft', methods=['POST'])
 def create_draft_service():
+    logging.info("create_draft_service called")
     data = request.get_json()
     
     # Get parameters
@@ -209,6 +220,7 @@ def create_draft_service():
     
     try:
         # Create new draft
+        logging.info(f"Creating draft with width={width}, height={height}")
         script, draft_id = create_draft(width=width, height=height)
         
         result["success"] = True
@@ -216,6 +228,7 @@ def create_draft_service():
             "draft_id": draft_id,
             "draft_url": utilgenerate_draft_url(draft_id)
         }
+        logging.info(f"Draft created: {draft_id}")
         return jsonify(result)
         
     except Exception as e:
@@ -1432,4 +1445,8 @@ def get_video_character_effect_types():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=PORT)
+    print(f"Starting CapCut API Server on port {PORT}...")
+    print(f"Environment: {'CapCut' if IS_CAPCUT_ENV else 'JianyingPro'}")
+    print(f"Server will be available at: http://0.0.0.0:{PORT}")
+    print("-" * 50)
+    app.run(host='0.0.0.0', port=PORT, threaded=True, use_reloader=False)
